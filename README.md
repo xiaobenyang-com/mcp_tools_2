@@ -37,10 +37,9 @@ npm start
           ],
           "env": { 
             "API_KEY": "你的实际apikey", 
-            "MCP_ID": "你的实际mcpId",  
+            "MCP_ID": "1804087353852938",  
             "LOG_LEVEL": "info" 
-          },
-          "transport": "stdio"
+          }
         }
       }
 }
