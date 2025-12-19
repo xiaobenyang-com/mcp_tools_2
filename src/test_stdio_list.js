@@ -7,15 +7,6 @@ let apiKey = process.env.XBY_APIKEY;
 let mcpId = process.env.MCP_ID;
 let mcpDescJson = process.env.MCP_DESC_JSON;
 
-import fs from 'fs/promises';
-const filePath = '/Users/yangxu/Code/XBY/mcp_tools/log/1.log';
-function writeLog(message) {
-    fs.appendFile(filePath, JSON.stringify(message) + '\n' + '\n', {
-        encoding: 'utf8', // 编码，默认utf8
-        flag: 'a' // 模式：w=覆盖（默认），a=追加，wx=新建（文件存在则报错）
-    });
-}
-
 const calcXiaoBenYangApi = async function (fullArgs) {
     // 发起 GET 请求
     let response = await fetch('https://mcp.xiaobenyang.com/api', {
