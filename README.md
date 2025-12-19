@@ -30,6 +30,20 @@ npm start
         "LOG_LEVEL": "info",
         "MCP_ID": "1804087353852938"
       }
+    },
+    "xiaobenyang-mcp-stream": {
+      "env": {
+        "XBY_APIKEY": "你的实际apikey"
+      },
+      "type": "streamable_http",
+      "url": "https://mcp.xiaobenyang.com/1804087353852938/mcp"
+    },
+    "xiaobenyang-sse": {
+      "env": {
+        "XBY_APIKEY": "你的实际apikey"
+      },
+      "type": "sse",
+      "url": "https://mcp.xiaobenyang.com/1804087353852938/sse"
     }
   }
 }
