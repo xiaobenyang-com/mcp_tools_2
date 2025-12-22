@@ -53,11 +53,30 @@ npm start
       },
       "type": "streamable_http",
       "url": "https://mcp.xiaobenyang.com/1804087353852938/mcp"
+<<<<<<< HEAD
+=======
     }
   }
 }
 ```
 
+### 使用 SSE 启动 ｜ Start by SSE transport
+```
+{
+  "mcpServers": {
+    "xiaobenyang-sse": {
+      "env": {
+        "XBY_APIKEY": "你的实际apikey"
+      },
+      "type": "sse",
+      "url": "https://mcp.xiaobenyang.com/1804087353852938/sse"
+>>>>>>> 8c0dfbb6ecc686b152c3df47e383ce9e93218c22
+    }
+  }
+}
+```
+
+<<<<<<< HEAD
 ### 使用 SSE 启动 ｜ Start by SSE transport
 ```
 {
@@ -73,36 +92,12 @@ npm start
 }
 ```
 
+=======
+>>>>>>> 8c0dfbb6ecc686b152c3df47e383ce9e93218c22
 
 
 ##  Inspector
 npx @modelcontextprotocol/inspector npx xiaobenyang-mcp
 
 
-```
-{
-  "mcpServers": {
-    "xiaobenyang-mcp-stream": {   
-      "env": {
-        "YOUR_XBY_APIKEY": "你的实际apikey"
-      },
-      "type": "streamable_http",
-      "url": "https://mcp.xiaobenyang.com/<MCP_ID>/mcp?XBY-APIKEY=<YOUR_XBY_APIKEY>"
-    }
-  }
-}
-```
 
-```json
-{
-  "mcpServers": {
-    "xiaobenyang-streamable": {
-      "env": {
-        "YOUR-XBY-APIKEY": "xby api key"
-      },
-      "type": "streamable_http",
-      "url": "https://mcp.xiaobenyang.com/1804087353852938/mcp?XBY-APIKEY=<YOUR-XBY-APIKEY>"
-    }
-  }
-}
-```
