@@ -1,4 +1,7 @@
+FROM node:22-alpine
+
 WORKDIR /app
-#RUN (npm install)
-#CMD ["node","src/test_stdio_list.js"]
-RUN (npx xiaobenyang-mcp)
+COPY package.json package-lock.json tsconfig.json ./
+COPY src ./src
+RUN npm ci && npm run tsc
+CMD ["node","dist/stdio.js"]
