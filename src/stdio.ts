@@ -6,7 +6,6 @@ import { server, getIsLoading } from './mcp.js';
 try {
   console.log("state.isLoading: " + getIsLoading())
   while (!getIsLoading()) {
-    console.log("state.isLoading: " + getIsLoading())
     setTimeout(() => {
       console.log('500 毫秒后执行');
     }, 500);

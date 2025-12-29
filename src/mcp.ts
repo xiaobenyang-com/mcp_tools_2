@@ -89,6 +89,7 @@ fetch('https://mcp.xiaobenyang.com/getMcpDesc?mcpId=' + mcpID, {
         };
 
         for (const apiDesc of apiDescList) {
+            console.log("11111")
             let inputSchema = JSON.parse(apiDesc.inputSchema);
             const zodDict: Record<string, z.ZodTypeAny> = {};
 
@@ -134,7 +135,9 @@ fetch('https://mcp.xiaobenyang.com/getMcpDesc?mcpId=' + mcpID, {
                 apiDesc.description ? apiDesc.description : apiDesc.name,
                 zodDict);
         }
+        console.log("2222222")
         state.isLoading = true;
+        console.log("state.isLoading: " + state.isLoading)
     });
 
 
