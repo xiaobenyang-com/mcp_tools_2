@@ -10,6 +10,10 @@ const mcpID: string = '1777316659522563';
 console.log("apiKey: " + apiKey)
 console.log("mcpID: " + mcpID)
 
+export const state = {
+    isLoading: false // 内部属性可修改
+};
+
 const calcXiaoBenYangApi = async function (fullArgs: Record<string, any>) {
     // 发起 POST 请求
     let response = await fetch('https://mcp.xiaobenyang.com/api', {
@@ -51,7 +55,6 @@ const server = new McpServer({
     version: "1.0.0",
 })
 
-let isLoading: boolean = false;
 
 fetch('https://mcp.xiaobenyang.com/getMcpDesc?mcpId=' + mcpID, {
     method: 'GET',
@@ -127,8 +130,8 @@ fetch('https://mcp.xiaobenyang.com/getMcpDesc?mcpId=' + mcpID, {
                 apiDesc.description ? apiDesc.description : apiDesc.name,
                 zodDict);
         }
-        isLoading = true;
+        state.isLoading = true;
     });
 
 
-export { server, isLoading};
+export { server, state};
