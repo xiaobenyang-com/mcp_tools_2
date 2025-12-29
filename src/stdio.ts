@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { server, state } from './mcp.js';
+import { server, getIsLoading } from './mcp.js';
 
 try {
-  console.log("state.isLoading: " + state.isLoading)
-  while (!state.isLoading) {
-    console.log("state.isLoading: " + state.isLoading)
+  console.log("state.isLoading: " + getIsLoading())
+  while (!getIsLoading()) {
+    console.log("state.isLoading: " + getIsLoading())
     setTimeout(() => {
       console.log('500 毫秒后执行');
     }, 500);

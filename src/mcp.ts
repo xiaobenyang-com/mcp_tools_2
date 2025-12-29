@@ -14,6 +14,10 @@ const state = {
     isLoading: false // 内部属性可修改
 };
 
+export const getIsLoading = () => {
+    return state.isLoading; // 每次调用都返回模块内 isLoading 的当前值
+};
+
 const calcXiaoBenYangApi = async function (fullArgs: Record<string, any>) {
     // 发起 POST 请求
     let response = await fetch('https://mcp.xiaobenyang.com/api', {
@@ -134,4 +138,4 @@ fetch('https://mcp.xiaobenyang.com/getMcpDesc?mcpId=' + mcpID, {
     });
 
 
-export { server, state};
+export { server};
