@@ -53,8 +53,6 @@ npm start
       },
       "type": "streamable_http",
       "url": "https://mcp.xiaobenyang.com/1804087353852938/mcp"
-<<<<<<< HEAD
-=======
     }
   }
 }
@@ -70,13 +68,11 @@ npm start
       },
       "type": "sse",
       "url": "https://mcp.xiaobenyang.com/1804087353852938/sse"
->>>>>>> 8c0dfbb6ecc686b152c3df47e383ce9e93218c22
     }
   }
 }
 ```
 
-<<<<<<< HEAD
 ### 使用 SSE 启动 ｜ Start by SSE transport
 ```
 {
@@ -92,8 +88,6 @@ npm start
 }
 ```
 
-=======
->>>>>>> 8c0dfbb6ecc686b152c3df47e383ce9e93218c22
 
 
 ##  Inspector
