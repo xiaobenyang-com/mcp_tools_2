@@ -30,12 +30,11 @@ npm start
   "mcpServers": {
     "xiaobenyang-mcp": {
       "args": [
-        "xiaobenyang-mcp@latest"
+        "xiaobenyang-mcp"
       ],
       "command": "npx",
       "env": {
         "XBY_APIKEY": "你的实际apikey",
-        "LOG_LEVEL": "info",
         "MCP_ID": "1804087353852938"
       }
     }
@@ -68,21 +67,6 @@ npm start
       },
       "type": "sse",
       "url": "https://mcp.xiaobenyang.com/1804087353852938/sse"
-    }
-  }
-}
-```
-
-### 使用 SSE 启动 ｜ Start by SSE transport
-```
-{
-  "mcpServers": {
-    "xiaobenyang-sse": {
-      "env": {
-        "XBY_APIKEY": "<YOUR-XBY-APIKEY>"
-      },
-      "type": "sse",
-      "url": "https://mcp.xiaobenyang.com/1804087353852938/sse?XBY-APIKEY=<YOUR-XBY-APIKEY>"
     }
   }
 }
