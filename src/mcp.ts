@@ -10,7 +10,7 @@ const mcpID: string = '1777316659522563';
 console.log("apiKey: " + apiKey)
 console.log("mcpID: " + mcpID)
 
-export const state = {
+const state = {
     isLoading: false // 内部属性可修改
 };
 
