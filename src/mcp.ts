@@ -1,8 +1,6 @@
 import {McpServer} from "@modelcontextprotocol/sdk/server/mcp.js"
 import {z, ZodType} from "zod";
 
-// Optional: If you have user-level config, define it here
-
 const apiKey: string = process.env.XBY_APIKEY || '';
 // const mcpID: string = process.env.MCP_ID;
 const mcpID: string = '1777316659522563';
@@ -35,7 +33,6 @@ const calcXiaoBenYangApi = async function (fullArgs: Record<string, any>) {
             }
         ]
     } as { [x: string]: unknown; content: [{ type: "text"; text: string }] };
-    ;
 };
 
 
@@ -74,6 +71,7 @@ const server = new McpServer({
 
 let  isRegistered = false;
 const getServer = async () => {
+    console.log("getServer start.........")
     if(!isRegistered) {
         try {
             state.isLoading = true;
@@ -90,14 +88,11 @@ const getServer = async () => {
             const apiDescList = data.tools;
 
             for (const apiDesc of apiDescList) {
-                console.log("11111")
                 let inputSchema = JSON.parse(apiDesc.inputSchema);
                 const zodDict: Record<string, z.ZodTypeAny> = {};
 
-                // 遍历 properties 中的每个字段
                 Object.entries(inputSchema.properties).forEach(([name, propConfig]) => {
                     let zodType;
-                    // 根据 type 映射 Zod 类型（可扩展更多类型）
                     let pt = (propConfig as { type: string }).type;
                     switch (pt) {
                         case 'string':
@@ -122,7 +117,6 @@ const getServer = async () => {
                             zodType = z.any();
                     }
 
-                    // 如果字段在 required 中，设置为必填
                     if (inputSchema.required?.includes(name)) {
                         zodDict[name] = zodType;
                     } else {
@@ -145,7 +139,13 @@ const getServer = async () => {
             state.isLoading = false; // 异常时也需要重置加载状态
             throw error; // 抛出错误，让调用方捕获
         }
+    } else {
+        return server;
     }
 }
+
+getServer().then(r => {
+    console.log("getServer end.........")
+});
 
 export {getServer, state, server}
