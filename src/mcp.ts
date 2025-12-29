@@ -4,8 +4,7 @@ import {z, ZodType} from "zod";
 // Optional: If you have user-level config, define it here
 
 const apiKey: string = process.env.XBY_APIKEY || '';
-// const mcpID: string = process.env.MCP_ID;
-const mcpID: string = '1777316659522563';
+const mcpID: string = process.env.MCP_ID;
 
 console.log("apiKey: " + apiKey)
 console.log("mcpID: " + mcpID)
