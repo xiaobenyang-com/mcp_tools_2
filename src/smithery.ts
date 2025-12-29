@@ -1,5 +1,5 @@
 import {z} from "zod";
-import {getServer, state} from "./mcp.js";
+import {getServer} from "./mcp.js";
 
 export const configSchema = z.object({
 })
