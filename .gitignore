@@ -1,4 +1,6 @@
+.smithery/
+node_modules
+.env
 .idea
-target
-plugins
+dist
 .DS_Store
