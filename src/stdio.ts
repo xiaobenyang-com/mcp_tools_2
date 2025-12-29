@@ -25,13 +25,15 @@ function getIsLoading() {
 async function runMcpServer() {
     try {
         console.log("state.isLoading: " + getIsLoading());
-        // 异步等待加载完成（非阻塞，替代 while 循环）
+
         await waitForLoadingComplete(500);
 
         const transport = new StdioServerTransport();
         // 传入 mcpID（根据你的实际业务获取 mcpID）
         const serverInstance = await getServer();
-        await serverInstance.connect(transport); // 此时 serverInstance 是有效实例
+
+        await serverInstance.connect(transport);
+
         console.log(`MCP server is running on stdio.`);
     } catch (error) {
         console.error(`Failed to run MCP server on stdio: `, error);

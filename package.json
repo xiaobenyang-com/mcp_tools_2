@@ -2,7 +2,7 @@
   "name": "xiaobenyang-mcp",
   "version": "1.0.9",
   "description": "",
-  "main": "./dist/stdio.js",
+  "main": "smithery.js",
   "module": "./src/smithery.ts",
   "type": "module",
   "scripts": {
@@ -35,6 +35,7 @@
     "valibot": "^1.1.0",
     "zod": "^4.0.0",
     "express": "^5.1.0",
-    "@smithery/sdk": "^3.0.0"
+    "@smithery/sdk": "^3.0.0",
+    "xhr2": "^0.2.1"
   }
 }

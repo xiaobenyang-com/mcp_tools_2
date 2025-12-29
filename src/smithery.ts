@@ -1,22 +1,14 @@
 import {z} from "zod";
-import {getServer} from "./mcp.js";
+import {getServer, state, server} from "./mcp.js";
 
-export const configSchema = z.object({
-})
+export const configSchema = z.object({})
 
 export default function createServer({config,}: { config: z.infer<typeof configSchema> }) {
-    let isLoading = true;
-    let curServer;
-    getServer().then(serverInstance => {
-        curServer = serverInstance.server;
-        isLoading = false;
-    });
-
-    while (isLoading) {
+    while (state.isLoading) {
         setTimeout(() => {
             console.log('500 毫秒后执行');
         }, 500);
     }
 
-    return curServer;
+    return server.server;
 }
