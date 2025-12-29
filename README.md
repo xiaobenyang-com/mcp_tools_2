@@ -1,3 +1,6 @@
+```markdown
+[![smithery badge](https://smithery.ai/badge/@xiaobenyang-com/mcp_tools_2)](https://smithery.ai/server/@xiaobenyang-com/mcp_tools_2)
+
 ## 在线新闻
 本MCP服务封装了新闻相关工具。
 
@@ -76,6 +79,4 @@ npm start
 
 ##  Inspector
 npx @modelcontextprotocol/inspector npx xiaobenyang-mcp
-
-
-
+```
