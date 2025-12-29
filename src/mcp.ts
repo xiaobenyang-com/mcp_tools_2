@@ -11,11 +11,7 @@ console.log("apiKey: " + apiKey)
 console.log("mcpID: " + mcpID)
 
 const state = {
-    isLoading: false // 内部属性可修改
-};
-
-export const getIsLoading = () => {
-    return state.isLoading; // 每次调用都返回模块内 isLoading 的当前值
+    isLoading: false
 };
 
 const calcXiaoBenYangApi = async function (fullArgs: Record<string, any>) {
@@ -38,21 +34,38 @@ const calcXiaoBenYangApi = async function (fullArgs: Record<string, any>) {
                 text: apiResult // 将字符串结果放入 content 中
             }
         ]
-    } as { [x: string]: unknown; content: [{ type: "text"; text: string }] };;
+    } as { [x: string]: unknown; content: [{ type: "text"; text: string }] };
+    ;
 };
 
 
-const  handleXiaoBenYangApi = async (args: Record<string, any>, toolName: string) => {
+const handleXiaoBenYangApi = async (args: Record<string, any>, toolName: string) => {
     // 校验aid是否存在
     if (toolName === undefined || toolName === null) {
         throw new Error("缺少必要参数 'aid'");
     }
     // 合并参数
-    const fullArgs = {...args, toolName:toolName};
+    const fullArgs = {...args, toolName: toolName};
     // 调用API
     return calcXiaoBenYangApi(fullArgs);
 };
 
+const addToolXiaoBenYangApi = function (
+    name: string,
+    desc: string,
+    params: Record<string, ZodType>
+) {
+    server.registerTool(
+        name,
+        {
+            title: name,
+            description: desc,
+            inputSchema: params,
+        }
+        ,
+        async (args: Record<string, any>) => handleXiaoBenYangApi(args, name)
+    )
+};
 
 const server = new McpServer({
     name: "Say Hello",
@@ -60,33 +73,23 @@ const server = new McpServer({
 })
 
 
-fetch('https://mcp.xiaobenyang.com/getMcpDesc?mcpId=' + mcpID, {
-    method: 'GET',
-}).then((res) => {
-    if (!res.ok) {
-        throw new Error(`请求失败：${res.status}`);
-    }
-    return res.json(); // 解析响应体为 JSON（假设返回 { apiDescList: [...] }）
-})
-    .then((data) => {
+const getServer = async () => {
+    try {
+        state.isLoading = true;
+
+        const res = await fetch('https://mcp.xiaobenyang.com/getMcpDesc?mcpId=' + mcpID, {
+            method: 'GET',
+        });
+
+        if (!res.ok) {
+            throw new Error(`请求失败：${res.status}`);
+        }
+
+        const data = await res.json();
         const apiDescList = data.tools;
 
-        const addToolXiaoBenYangApi = function (
-            name: string,
-            desc: string,
-            params: Record<string, ZodType>
-        ) {
-            server.registerTool(
-                name,
-                {
-                    title: name,
-                    description: desc,
-                    inputSchema: params,
-                }
-                ,
-                async (args: Record<string, any>) => handleXiaoBenYangApi(args, name)
-            )
-        };
+        console.log("apiDescList: " + apiDescList);
+
 
         for (const apiDesc of apiDescList) {
             console.log("11111")
@@ -136,9 +139,15 @@ fetch('https://mcp.xiaobenyang.com/getMcpDesc?mcpId=' + mcpID, {
                 zodDict);
         }
         console.log("2222222")
-        state.isLoading = true;
+        state.isLoading = false;
         console.log("state.isLoading: " + state.isLoading)
-    });
+        return server;
+    } catch (error) {
+        console.error("getServer 执行失败：", error);
+        state.isLoading = false; // 异常时也需要重置加载状态
+        throw error; // 抛出错误，让调用方捕获
+    }
+}
 
 
-export { server};
+export {getServer, state}
